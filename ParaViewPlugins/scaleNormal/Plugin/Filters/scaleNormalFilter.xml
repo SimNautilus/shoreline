@@ -1,0 +1,56 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="ScaleNormalFilter" class="scaleNormalFilter" label="Scale About Normals">
+    <Documentation
+      short_help="scales a feature via biharmonic deformation field."
+      long_help="scales a feature.">
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Meshes.
+        </Documentation>
+      </InputProperty>
+<!-- Elements of configuration of the filter -->
+      <StringVectorProperty name="regionsToScale"
+        command="SetregionsToScale"
+        label="Regions to Scale"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <StringVectorProperty name="regionsToFix"
+        command="SetregionsToFix"
+        label="Regions to Fix"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <DoubleVectorProperty name="scaleValue"
+        command="SetscaleValue"
+        label="Amount to scale feature"
+        number_of_elements="1"
+        default_values="0.0"
+        >
+        <Documentation>
+          This value scales the features about their normal by this amount.
+        </Documentation>
+      </DoubleVectorProperty>
+
+      <!-- Show in the Filters menu under "SSE"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>

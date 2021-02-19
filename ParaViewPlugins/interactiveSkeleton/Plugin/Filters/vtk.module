@@ -1,0 +1,17 @@
+NAME
+  interactiveSkeletonFilters
+DEPENDS
+  VTK::IOXML
+  VTK::CommonCore
+  VTK::CommonDataModel
+  VTK::CommonExecutionModel
+  VTK::CommonTransforms
+  VTK::FiltersCore
+  VTK::FiltersGeometry
+  VTK::FiltersSources
+  VTK::InteractionWidgets
+  VTK::RenderingCore
+  ParaView::pqCore
+  ParaView::pqWidgets
+  ParaView::pqComponents
+  ParaView::pqApplicationComponents

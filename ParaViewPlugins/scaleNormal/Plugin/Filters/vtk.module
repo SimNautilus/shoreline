@@ -1,0 +1,8 @@
+NAME
+  scaleNormalFilters
+DEPENDS
+  VTK::FiltersCore
+  VTK::FiltersGeometry
+  VTK::IOXML
+PRIVATE_DEPENDS
+  VTK::CommonCore

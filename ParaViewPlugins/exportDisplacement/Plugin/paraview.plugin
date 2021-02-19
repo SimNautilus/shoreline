@@ -1,0 +1,7 @@
+NAME
+  exportDisplacementFilter
+DESCRIPTION
+  This filter exports displacement fields for use by the Shoreline geometry interactivity system.
+REQUIRES_MODULES
+  VTK::CommonCore
+  VTK::FiltersCore

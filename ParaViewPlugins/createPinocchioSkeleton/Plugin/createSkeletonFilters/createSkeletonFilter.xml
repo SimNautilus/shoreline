@@ -1,0 +1,63 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="SSE_createSkeletonFilter" class="vtkcreateSkeletonFilter" label="Create Skeleton">
+    <Documentation
+      short_help="Create a skeleton rig to modify the surface mesh."
+      long_help="Creates a skeleton rig of a surface mesh.">
+      This filter will generate a skeleton rig of a triangulated surface mesh.
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Mesh.
+        </Documentation>
+      </InputProperty>
+<!-- Elements of configuration of the filter -->
+      <StringVectorProperty name="Regions to Rig"
+        command="SetregionsToRig"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <IntVectorProperty name="Number of Bones"
+        command="SetboneCount"
+        number_of_elements="1"
+        default_values="1">
+        <Documentation>
+          The number of bones determines the resolution of the manipulator skeleton (minimum 1 bone).
+        </Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty name="Initial Skeleton Direction"
+        command="SetskeletonDirection"
+        number_of_elements="1"
+        default_values="0">
+        <EnumerationDomain name="enum">
+          <Entry value="0" text="x"/>
+          <Entry value="1" text="y"/>
+          <Entry value="2" text="z"/>
+        </EnumerationDomain>
+        <Documentation>
+          This propety sets the direction of the base skeleton being generated
+        </Documentation>
+      </IntVectorProperty>
+
+      <OutputPort name="Surface Mesh" index="0" id="port0" />
+      <OutputPort name="Skeleton" index="1" id="port1"/>
+      <!-- Show in the Filters menu under "SSE"-->
+      <Hints>
+        <ShowInMenu category="SSE" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>

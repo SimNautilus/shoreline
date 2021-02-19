@@ -1,0 +1,37 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="SSE_ExportDisplacementFilter" class="exportDisplacementFilter" label="Export Displacement Field">
+    <Documentation
+      short_help="exports a deformation field."
+      long_help="exports a deformation field.">
+      This filter will extract discrete differential properties of a surface.
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Meshes.
+        </Documentation>
+      </InputProperty>
+<!-- Elements of configuration of the filter -->
+      <StringVectorProperty name="filePath"
+                        command="SetfilePath"
+                        number_of_elements="1"
+                        default_values="~">
+      </StringVectorProperty>
+      <!-- Show in the Filters menu under "CGAL"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>

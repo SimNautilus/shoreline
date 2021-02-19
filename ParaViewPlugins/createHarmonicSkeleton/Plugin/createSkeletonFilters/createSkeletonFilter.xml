@@ -1,0 +1,34 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="SSE_createSkeletonFilter" class="vtkcreateSkeletonFilter" label="Create MCF Skeleton">
+    <Documentation
+      short_help="Create a skeleton rig to modify the surface mesh."
+      long_help="Creates a skeleton rig of a surface mesh via mean curvature flow.">
+      This filter will generate a skeleton rig of a triangulated surface mesh.
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Mesh.
+        </Documentation>
+      </InputProperty>
+
+      <OutputPort name="Surface Mesh" index="0" id="port0" />
+      <OutputPort name="Skeleton" index="1" id="port1"/>
+      <!-- Show in the Filters menu under "Nautilus"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>

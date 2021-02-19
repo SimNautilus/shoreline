@@ -1,0 +1,7 @@
+NAME
+  detectFeaturesFilter
+DESCRIPTION
+  This filter detects geometric features via hard edge segmentation
+REQUIRES_MODULES
+  VTK::CommonCore
+  VTK::FiltersCore

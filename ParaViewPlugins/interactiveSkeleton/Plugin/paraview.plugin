@@ -1,0 +1,21 @@
+NAME
+  HandleWidgets
+DESCRIPTION
+  An example plugin with an added handle widget example.
+REQUIRES_MODULES
+  ParaView::pqCore
+  ParaView::pqWidgets
+  ParaView::pqComponents
+  ParaView::pqApplicationComponents
+  ParaView::RemotingServerManager
+  ParaView::RemotingViews
+  VTK::CommonDataModel
+  VTK::CommonExecutionModel
+  VTK::CommonTransforms
+  VTK::FiltersGeometry
+  VTK::FiltersSources
+  VTK::RenderingCore
+  VTK::InteractionWidgets
+  VTK::CommonCore
+  VTK::FiltersCore
+  VTK::FiltersGeneral

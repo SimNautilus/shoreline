@@ -1,0 +1,181 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+   <SourceProxy name="SkeletonWidgetFilter" label="Interactive Skeleton Widget"
+                class="vtkInteractiveSkeletonFilter">
+    <!-- input ports -->
+    <InputProperty
+      name="Mesh"
+      port_index="0"
+      command="SetInputConnection">
+      <ProxyGroupDomain name="groups">
+        <Group name="sources"/>
+        <Group name="filters"/>
+      </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet"/>
+      </DataTypeDomain>
+      <Documentation>
+        The input Mesh.
+      </Documentation>
+    </InputProperty>
+    <InputProperty
+      name="Skeleton"
+      port_index="1"
+      command="SetInputConnection">
+      <ProxyGroupDomain name="groups">
+        <Group name="sources"/>
+        <Group name="filters"/>
+      </ProxyGroupDomain>
+      <DataTypeDomain name="input_type">
+        <DataType value="vtkDataSet"/>
+      </DataTypeDomain>
+      <Documentation>
+        The input Skeleton.
+      </Documentation>
+    </InputProperty>
+    <!-- output port -->
+    <OutputPort name="Surface Mesh" index="0" id="port0" />
+
+    <!-- UI connections -->
+
+    <IntVectorProperty name="UpdateSkeleton"
+                       command="SetdummyVar"
+                       number_of_elements="1"
+                       default_values="1">
+     <BooleanDomain name="bool"/>
+   </IntVectorProperty>
+
+    <DoubleVectorProperty name="HandlePositionsGetter"
+                          command="SetPoints">
+      <DoubleArrayInformationHelper />
+      <Documentation>
+        Sets the position of the skeleton
+      </Documentation>
+    </DoubleVectorProperty>
+    <!-- <DoubleVectorProperty command="SetPoint"
+                          default_values="0 0 0"
+                          name="Points"
+                          number_of_elements="3"
+                          number_of_elements_per_command="3"
+                          repeat_command="1"
+                          set_number_command="SetNumberOfPoints"
+                          use_index="1">
+    </DoubleVectorProperty> -->
+
+    <PropertyGroup panel_widget="my_skeleton_widget">
+      <Property function="GetHandlePositions" name="HandlePositionsGetter"/>
+      <!-- <Property function="HandlePositions" name="Points" /> -->
+    </PropertyGroup>
+    <Hints>
+      <ShowInMenu category="Nautilus" />
+    </Hints>
+   </SourceProxy>
+ </ProxyGroup>
+ <!-- ////////////////////////////////////////////////////////////////////// -->
+ <ProxyGroup name="representations">
+   <NewWidgetRepresentationProxy class="vtk3DWidgetRepresentation"
+                                 name="MySkeletonWidgetRepresentation">
+     <Documentation>Representation proxy for the skeleton widget. This
+     includes the widget/representation proxies for the sphere 3D
+     widget.</Documentation>
+     <IntVectorProperty command="SetEnabled"
+                        default_values="0"
+                        name="Enabled"
+                        number_of_elements="1">
+       <BooleanDomain name="bool" />
+       <Documentation>Enable/Disable widget interaction.</Documentation>
+     </IntVectorProperty>
+     <SubProxy>
+       <Proxy name="Prop"
+              proxygroup="3d_widget_representations"
+              proxyname="MySkeletonRepresentation"></Proxy>
+       <ExposedProperties>
+         <Property name="PlaceWidget" />
+         <Property name="Visibility" />
+         <Property name="HandlePositionsInfo" />
+         <!-- <Property name="HandlePositions" /> -->
+         <Property name="LineColor" />
+         <Property name="CurrentHandleIndex" />
+         <Property name="CurrentHandleIndexInfo" />
+       </ExposedProperties>
+     </SubProxy>
+     <SubProxy>
+       <Proxy name="Widget"
+              proxygroup="3d_widgets"
+              proxyname="MySkeletonWidget"></Proxy>
+     </SubProxy>
+     <!-- End of MySkeletonWidgetRepresentation -->
+   </NewWidgetRepresentationProxy>
+ </ProxyGroup>
+ <!-- ////////////////////////////////////////////////////////////////////// -->
+ <ProxyGroup name="3d_widget_representations">
+   <Proxy class="vtkMySkeletonRepresentation"
+          name="MySkeletonRepresentation">
+     <Documentation>Representation for skeleton source.</Documentation>
+     <IntVectorProperty animateable="1"
+                        command="SetVisibility"
+                        default_values="1"
+                        name="Visibility"
+                        number_of_elements="1">
+       <BooleanDomain name="bool" />
+     </IntVectorProperty>
+     <DoubleVectorProperty argument_is_array="1"
+                           command="PlaceWidget"
+                           default_values="none"
+                           name="PlaceWidget"
+                           number_of_elements="6">
+       <DoubleRangeDomain name="range" />
+     </DoubleVectorProperty>
+     <DoubleVectorProperty command="SetPlaceFactor"
+                           default_values="1.0"
+                           name="PlaceFactor"
+                           number_of_elements="1">
+       <DoubleRangeDomain min="0.01"
+                          name="range" />
+     </DoubleVectorProperty>
+     <!-- <DoubleVectorProperty command="SetHandlePosition"
+                           default_values="0 0 0"
+                           name="HandlePositions"
+                           number_of_elements="3"
+                           number_of_elements_per_command="3"
+                           repeat_command="1"
+                           information_property="HandlePositionsInfo"
+                           get_number_command="GetNumberOfHandles"
+                           use_index="1"
+                           si_class="vtkSIDoubleVectorProperty">
+     </DoubleVectorProperty> -->
+
+     <DoubleVectorProperty name="HandlePositionsInfo"
+                           command="GetHandlePositions"
+                           information_only="1">
+       <DoubleArrayInformationHelper />
+     </DoubleVectorProperty>
+     <DoubleVectorProperty command="SetLineColor"
+                           default_values="1.0 0.0 0.0"
+                           name="LineColor"
+                           number_of_elements="3">
+       <DoubleRangeDomain max="1 1 1"
+                          min="0 0 0"
+                          name="range" />
+     </DoubleVectorProperty>
+     <IntVectorProperty name="CurrentHandleIndexInfo"
+       command="GetCurrentHandleIndex"
+       information_only="1"/>
+     <IntVectorProperty name="CurrentHandleIndex"
+       number_of_elements="1"
+       default_values="-1"
+       command="SetCurrentHandleIndex"
+       information_property="CurrentHandleIndexInfo"
+       panel_visibility="never">
+     </IntVectorProperty>
+   </Proxy>
+ </ProxyGroup>
+ <!-- ////////////////////////////////////////////////////////////////////// -->
+ <ProxyGroup name="3d_widgets">
+   <Proxy base_proxygroup="3d_widgets"
+          base_proxyname="WidgetBase"
+          class="vtkMySkeletonWidget"
+          name="MySkeletonWidget">
+   </Proxy>
+ </ProxyGroup>
+</ServerManagerConfiguration>

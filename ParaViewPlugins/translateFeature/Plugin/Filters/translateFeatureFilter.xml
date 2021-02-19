@@ -1,0 +1,91 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="SSE_TranslateFeatureFilter" class="translateFeatureFilter" label="Translate Feature">
+    <Documentation
+      short_help="Translates a feature via biharmonic deformation field."
+      long_help="Translates a feature.">
+      This filter will extract discrete differential properties of a surface.
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Meshes.
+        </Documentation>
+      </InputProperty>
+<!-- Elements of configuration of the filter -->
+      <!-- <IntVectorProperty name="regionToMove"
+        command="SetregionToMove"
+        label="The index of the feature to move"
+        number_of_elements="1"
+        default_values="0"
+      >
+        <Documentation>
+          This region will be moved by the supplied vector.
+        </Documentation>
+      </IntVectorProperty>
+
+      <IntVectorProperty name="regionToFix"
+        command="SetregionToFix"
+        label="The index of the feature to fix"
+        number_of_elements="2"
+        default_values="0 1"
+        >
+        <Documentation>
+          This region will be fixed.
+        </Documentation>
+      </IntVectorProperty> -->
+
+      <StringVectorProperty name="regionsToTranslate"
+        command="SetregionsToTranslate"
+        label="Regions to Translate"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <StringVectorProperty name="regionsToFix"
+        command="SetregionsToFix"
+        label="Regions to Fix"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+
+      <DoubleVectorProperty name="moveVector"
+        command="SetmoveVector"
+        label="Amount/Direction to move feature"
+        number_of_elements="3"
+        default_values="0.0 0.0 0.0"
+        >
+        <Documentation>
+          This vector will move the region set to be moved.
+        </Documentation>
+      </DoubleVectorProperty>
+
+      <IntVectorProperty name="harmonicOrder"
+        command="SetHarmonicOrder"
+        label="Deformation Polyharmonic Order"
+        number_of_elements="1"
+        default_values="2"
+        >
+        <Documentation>
+          Select between harmonic, biharmonic or triharmonic deformation.
+        </Documentation>
+      </IntVectorProperty>
+
+      <!-- Show in the Filters menu under "CGAL"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>

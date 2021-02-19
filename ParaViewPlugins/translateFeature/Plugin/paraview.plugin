@@ -1,0 +1,7 @@
+NAME
+  translateFeatureFilter
+DESCRIPTION
+  This filter enables translation of a feature
+REQUIRES_MODULES
+  VTK::CommonCore
+  VTK::FiltersCore

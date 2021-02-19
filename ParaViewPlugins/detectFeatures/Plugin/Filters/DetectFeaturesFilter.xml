@@ -1,0 +1,49 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="FeatureAutoDetectionFilter" class="DetectFeaturesFilter" label="Auto Detect Features">
+    <Documentation
+      short_help="Detects features."
+      long_help="Detects features.">
+      This filter will detect features segmented by sharp edges on a vtkPolyData.
+    </Documentation>
+      <!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Meshes.
+        </Documentation>
+      </InputProperty>
+      <!-- Elements of configuration of the filter -->
+      <DoubleVectorProperty name="AngleInDegrees"
+        command="SetAngleInDegrees"
+        label="Threshhold for sharp edge"
+        number_of_elements="1"
+        default_values="90"
+        information_property="AngleInfo"
+        >
+         <DoubleRangeDomain name="range" min="0.0" />
+        <Documentation>
+          The threshhold for a sharp corner (angle in degrees).
+        </Documentation>
+      </DoubleVectorProperty>
+      <DoubleVectorProperty name="AngleInfo"
+                            command="GetAngleInfo"
+                            information_only="1">
+        <SimpleDoubleInformationHelper />
+      </DoubleVectorProperty>
+      <!-- Show in the Filters menu under "CGAL"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
