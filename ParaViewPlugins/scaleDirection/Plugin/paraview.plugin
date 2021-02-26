@@ -1,0 +1,7 @@
+NAME
+  scaleDirectionFilter
+DESCRIPTION
+  This filter enables scaling of a feature about the x y and/or z axes
+REQUIRES_MODULES
+  VTK::CommonCore
+  VTK::FiltersCore

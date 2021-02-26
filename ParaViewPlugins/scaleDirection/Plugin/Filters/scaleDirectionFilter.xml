@@ -1,0 +1,67 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="filters">
+    <SourceProxy name="ScaleDirectionFilter" class="scaleDirectionFilter" label="Scale About Directions">
+    <Documentation
+      short_help="scales a feature via biharmonic deformation field."
+      long_help="scales a feature.">
+    </Documentation>
+<!-- Dialog to choose the input -->
+      <InputProperty
+        name="Mesh"
+        port_index="0"
+        command="SetInputConnection">
+        <ProxyGroupDomain name="groups">
+          <Group name="sources"/>
+          <Group name="filters"/>
+        </ProxyGroupDomain>
+        <DataTypeDomain name="input_type">
+          <DataType value="vtkDataSet"/>
+        </DataTypeDomain>
+        <Documentation>
+          The input Meshes.
+        </Documentation>
+      </InputProperty>
+<!-- Elements of configuration of the filter -->
+      <StringVectorProperty name="regionsToScale"
+        command="SetregionsToScale"
+        label="Regions to Scale"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <StringVectorProperty name="regionsToFix"
+        command="SetregionsToFix"
+        label="Regions to Fix"
+        number_of_elements="1"
+        default_values="-1">
+      </StringVectorProperty>
+
+      <DoubleVectorProperty name="scaleVector"
+        command="SetscaleVector"
+        label="Amount/Direction to scale feature"
+        number_of_elements="3"
+        default_values="1.0 1.0 1.0"
+        >
+        <Documentation>
+          This vector will scale the regions by this amount in the x,y,z directions.
+        </Documentation>
+      </DoubleVectorProperty>
+
+      <IntVectorProperty name="harmonicOrder"
+        command="SetHarmonicOrder"
+        label="Deformation Polyharmonic Order"
+        number_of_elements="1"
+        default_values="2"
+        >
+        <Documentation>
+          Select between harmonic, biharmonic or triharmonic deformation.
+        </Documentation>
+      </IntVectorProperty>
+
+      <!-- Show in the Filters menu under "SSE"-->
+      <Hints>
+        <ShowInMenu category="Nautilus" />
+      </Hints>
+    </SourceProxy>
+  </ProxyGroup>
+</ServerManagerConfiguration>
