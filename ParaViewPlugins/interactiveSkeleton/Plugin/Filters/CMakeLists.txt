@@ -19,6 +19,6 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 vtk_module_link(interactiveSkeletonFilters
   PUBLIC igl::core igl::common Eigen3::Eigen ${EMBREE_LIBRARIES}
 )
-vtk_module_include(interactiveSkeletonFilters PUBLIC ${EMBREE_INCLUDES} "/Users/coreylee/Git/libigl_Test/libigl/external/embree/include" "/Users/coreylee/Git/libigl_Test/build/include")
-
+# vtk_module_include(interactiveSkeletonFilters PUBLIC ${EMBREE_INCLUDES} "/Users/coreylee/Git/libigl_Test/libigl/external/embree/include" "/Users/coreylee/Git/libigl_Test/build/include")
+vtk_module_include(interactiveSkeletonFilters PUBLIC ${EMBREE_INCLUDES} "/users/jeffhadley/Builds/src/libigl/include/igl/embree" "/users/jeffhadley/Builds/src/libigl/include") 
 paraview_add_server_manager_xmls(XMLS vtkInteractiveSkeletonFilter.xml)

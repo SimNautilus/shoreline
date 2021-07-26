@@ -82,7 +82,8 @@ int vtkInteractiveSkeletonFilter::RequestData(
   //////////////////////////////////////////////////////////////////////////////
   // Read the representation of the widget from file
   vtkXMLPolyDataReader* reader = vtkXMLPolyDataReader::New();
-  reader->SetFileName ("/Users/coreylee/Git/cache/skeletonMod.vtp");
+  std::string cache_path = std::string(CACHE_PATH) + std::string( "/skeletonMod.vtp" );
+  reader->SetFileName ( cache_path.c_str() );
   reader->Update();
 
   vtkPolyData* sklWidget = reader->GetOutput();

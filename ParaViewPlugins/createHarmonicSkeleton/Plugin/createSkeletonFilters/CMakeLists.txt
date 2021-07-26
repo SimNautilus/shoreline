@@ -9,15 +9,14 @@ vtk_module_add_module(createSkeletonFilters
 #Find CGAL
 find_package(LIBIGL REQUIRED)
 find_package(CGAL REQUIRED)
+find_package(Boost REQUIRED) 
 # find_package (Eigen3 3.3 REQUIRED NO_MODULE)
-add_definitions("-DCGAL_EIGEN3_ENABLED")#-DCGAL_HEADER_ONLY
+# add_definitions("-DCGAL_EIGEN3_ENABLED")#-DCGAL_HEADER_ONLY ***Commented this out***
 
 vtk_module_include( createSkeletonFilters
-  PRIVATE "/Users/coreylee/Git/libigl/include"
+  PRIVATE "/users/jeffhadley/Builds/src/libigl/include"
 )
-vtk_module_link( createSkeletonFilters
-  PRIVATE CGAL::CGAL Eigen3::Eigen igl::core ${Boost_LIBRARIES}
-)
-
+vtk_module_link( createSkeletonFilters PRIVATE CGAL::CGAL Eigen3::Eigen igl::core Boost::boost)
+	#PRIVATE CGAL::CGAL Eigen3::Eigen igl::core ${Boost_LIBRARIES})
 paraview_add_server_manager_xmls(
 XMLS  createSkeletonFilter.xml)
