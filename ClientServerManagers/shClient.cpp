@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 int main() {
   Shoreline::VectorMesh<long> vm;
