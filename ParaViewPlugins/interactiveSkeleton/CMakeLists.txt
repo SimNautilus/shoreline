@@ -24,12 +24,15 @@ include(GNUInstallDirs)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
+set(CACHE_PATH_OPTION "" CACHE STRING "path to the GUI cache")
 
 set("_paraview_plugin_default_${CMAKE_PROJECT_NAME}" ON)
 paraview_plugin_scan(
   PLUGIN_FILES      "${CMAKE_CURRENT_SOURCE_DIR}/Plugin/paraview.plugin"
   PROVIDES_PLUGINS  plugins
   REQUIRES_MODULES  required_modules)
+
+add_compile_definitions(CACHE_PATH="${CACHE_PATH_OPTION}")
 
 foreach (module IN LISTS required_modules)
   if (NOT TARGET "${module}")

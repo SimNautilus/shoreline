@@ -58,7 +58,8 @@ vtkMySkeletonRepresentation::vtkMySkeletonRepresentation()
   //////////////////////////////////////////////////////////////////////////////
   // Read the representation of the widget from file
   vtkNew<vtkXMLPolyDataReader> reader;
-  reader->SetFileName("/Users/coreylee/Git/cache/skeleton.vtp");
+  std::string cache_path_skel = std::string(CACHE_PATH) + std::string("/skeleton.vtp");
+  reader->SetFileName( cache_path_skel.c_str() );
   reader->Update();
 
   this->Skeleton = vtkMySkeletonSource::New();
@@ -67,7 +68,8 @@ vtkMySkeletonRepresentation::vtkMySkeletonRepresentation()
   this->Skeleton->Update();
 
   vtkNew<vtkXMLPolyDataWriter> writer;
-  writer->SetFileName ("/Users/coreylee/Git/cache/skeletonMod.vtp");
+  std::string cache_path_skelMod = std::string(CACHE_PATH) + std::string("/skeletonMod.vtp");
+  writer->SetFileName ( cache_path_skelMod.c_str() );
   writer->SetInputData ( this->Skeleton->GetSkeleton() );
   writer->Write();
 
@@ -1056,7 +1058,8 @@ void vtkMySkeletonRepresentation::WidgetInteraction(double e[2])
   this->BuildRepresentation();
 
   vtkXMLPolyDataWriter* writer = vtkXMLPolyDataWriter::New();
-  writer->SetFileName ("/Users/coreylee/Git/cache/skeletonMod.vtp");
+  std::string cache_path_skelMod2 = std::string(CACHE_PATH) + std::string("/skeletonMod.vtp");
+  writer->SetFileName ( cache_path_skelMod2.c_str() );
   writer->SetInputData ( this->Skeleton->GetSkeleton() );
   writer->Write();
   writer->Delete();

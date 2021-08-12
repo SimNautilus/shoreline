@@ -203,7 +203,8 @@ int vtkcreateSkeletonFilter::RequestData(
   // write skeleton to file
   vtkSmartPointer<vtkXMLPolyDataWriter> writer =
     vtkSmartPointer<vtkXMLPolyDataWriter>::New();
-  writer->SetFileName ("/Users/coreylee/Git/cache/skeleton.vtp");
+  std::string cache_path = std::string(CACHE_PATH) + std::string( "/skeleton.vtp");
+  writer->SetFileName ( cache_path.c_str() );
   writer->SetInputData ( skelOut );
   writer->Write();
   

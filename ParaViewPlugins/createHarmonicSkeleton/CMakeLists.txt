@@ -10,10 +10,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CACHE_PATH_OPTION "" CACHE STRING "path to the GUI cache")
 
 find_package(ParaView REQUIRED)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+add_compile_definitions(CACHE_PATH="${CACHE_PATH_OPTION}")
 # enable_testing()
 
 # Required for python testing
